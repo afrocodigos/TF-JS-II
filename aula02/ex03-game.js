@@ -5,13 +5,13 @@ realizadas para descobrir. dica: pesquise como gerar um numero aleatório usando
 const prompt = require("prompt-sync")()
 
 let guesses= 1
-let numberSorted = parseInt(Math.random()*101)
+let secretNumber = parseInt(Math.random()*101)
 let guessNumber = parseInt(prompt('Tente adivinhar o número secreto entre 1 e 100: '))
 
 do {
     if(guessNumber > 100 || guessNumber < 1) {
         console.log(`O numero ${guessNumber} está fora do limite permitido.`)
-    } else if(guessNumber > numberSorted) {
+    } else if(guessNumber > secretNumber) {
         console.log(`O numero ${guessNumber} é MAIOR que o secreto`)
     } else {
         console.log(`O numero ${guessNumber} é MENOR que o secreto`)
@@ -20,6 +20,6 @@ do {
     guessNumber = parseInt(prompt('Tente novamente! Digite um o número entre 1 e 100: '))
     guesses++
 
-} while (guessNumber !== numberSorted);
+} while (guessNumber !== secretNumber);
 
-console.log(`ACERTOU! O numero é ${numberSorted}! Foram ${guesses} tentativas`)
+console.log(`ACERTOU! O numero é ${secretNumber}! Foram ${guesses} tentativas`)
