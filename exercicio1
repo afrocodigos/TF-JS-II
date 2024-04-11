@@ -1,0 +1,31 @@
+// Crie um sistema de controle de acesso para um prédio que precisa verificar se um usuário tem 
+// permissão para entrar. 
+// O programa deve analisar 3 dados: nome do usuário, seu nível de acesso 
+// (visitante, funcionário, gerente ou administrador) e o horário de acesso como entrada. O programa deve:
+// Verificar se o horário de acesso está dentro do horário de funcionamento do prédio (8h às 22h).
+// Caso seja visitante, o horário de visitas só é permitido entre 9h e 18h.
+// Verificar se o nível de acesso do usuário é suficiente para entrar no prédio no horário especificado.
+// Conceder acesso ao usuário se todas as condições forem atendidas.
+// Negar acesso ao usuário se alguma das condições não for atendida.
+// Ao fim exiba uma frase amigável dizendo se a entrara está permitida. 
+//Caso não seja permitida, deixe claro o porquê
+
+const prompt = require('prompt-sync')();
+let nome = prompt("Digite seu nome: ");
+let nivelAcesso = prompt("Digite seu nível de acesso (visitante, funcionário, gerente ou administrador): ");
+let horarioAcesso = parseInt(prompt("Digite o de acesso (formato de 24 horas): "));
+
+const horarioPermitido = {inicio: 8, fim: 22 };
+const horarioNegado = {inicio: 7, fim : 24};
+
+if (horarioAcesso < horarioPermitido.inicio || horarioAcesso > horarioPermitido.fim) {
+    console.log(`Desculpe, ${nome}. O prédio está fechado neste horário.`);
+} else {
+        if (nivelAcesso === "visitante" && (horarioAcesso < 9 || horarioAcesso > 18)) {
+            console.log(`Desculpe, ${nome}. Visitantes só têm permissão para entrar entre 9h e 18h.`);
+
+        } else if(nivelAcesso === "funcionário, gerente ou administrador" &&
+                    (horarioAcesso < 8 || horarioAcesso > 22)){
+                    console.log(`Desculpe, ${nome}. Funcionário, gerente ou administrador só têm permissão para entrar entre 8h e 22h.`); 
+        } else {
+                console.log(`Olá, ${nome}! Você tem permissão para entrar.`);
